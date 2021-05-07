@@ -8,5 +8,6 @@
         <service id="sylius_invoicing_plugin.converter.invoice_shop_billing_data" class="Sylius\InvoicingPlugin\Converter\InvoiceShopBillingDataConverter" />
         <service id="sylius_invoicing_plugin.converter.line_items" class="Sylius\InvoicingPlugin\Converter\LineItemsConverter" />
         <service id="sylius_invoicing_plugin.converter.tax_items" class="Sylius\InvoicingPlugin\Converter\TaxItemsConverter" />
+        <service id="sylius_invoicing_plugin.converter.promotion_items" class="Sylius\InvoicingPlugin\Converter\PromotionItemsConverter" />
     </services>
 </container>
