@@ -2,18 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Sylius\InvoicingPlugin\Creator;
+namespace App\Invoice\Creator;
 
 use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Core\Repository\OrderRepositoryInterface;
-use Sylius\InvoicingPlugin\Doctrine\ORM\InvoiceRepositoryInterface;
 use Sylius\InvoicingPlugin\Entity\InvoiceInterface;
 use Sylius\InvoicingPlugin\Exception\InvoiceAlreadyGenerated;
 use Sylius\InvoicingPlugin\Generator\InvoiceGeneratorInterface;
+use Sylius\InvoicingPlugin\Repository\InvoiceRepository;
+use Sylius\InvoicingPlugin\Creator\InvoiceCreatorInterface;
 
 final class InvoiceCreator implements InvoiceCreatorInterface
 {
-    /** @var InvoiceRepositoryInterface */
+    /** @var InvoiceRepository */
     private $invoiceRepository;
 
     /** @var OrderRepositoryInterface */
@@ -23,7 +24,7 @@ final class InvoiceCreator implements InvoiceCreatorInterface
     private $invoiceGenerator;
 
     public function __construct(
-        InvoiceRepositoryInterface $invoiceRepository,
+        InvoiceRepository $invoiceRepository,
         OrderRepositoryInterface $orderRepository,
         InvoiceGeneratorInterface $invoiceGenerator
     ) {
@@ -45,7 +46,9 @@ final class InvoiceCreator implements InvoiceCreatorInterface
         $order = $this->orderRepository->findOneByNumber($orderNumber);
 
         $invoice = $this->invoiceGenerator->generateForOrder($order, $dateTime);
-
+        foreach ($invoice->promotionItems() as $item){
+            $item->setInvoice($invoice);
+        }
         $this->invoiceRepository->add($invoice);
     }
 }
