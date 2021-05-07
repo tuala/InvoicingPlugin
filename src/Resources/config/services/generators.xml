@@ -21,6 +21,7 @@
             <argument type="service" id="sylius_invoicing_plugin.converter.invoice_shop_billing_data" />
             <argument type="service" id="sylius_invoicing_plugin.converter.line_items" />
             <argument type="service" id="sylius_invoicing_plugin.converter.tax_items" />
+            <argument type="service" id="sylius_invoicing_plugin.converter.promotion_items" />
         </service>
 
         <service id="sylius_invoicing_plugin.generator.invoice_pdf_file" class="Sylius\InvoicingPlugin\Generator\InvoicePdfFileGenerator">
