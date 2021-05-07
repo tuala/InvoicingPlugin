@@ -23,6 +23,7 @@ interface InvoiceFactoryInterface
         int $total,
         Collection $lineItems,
         Collection $taxItems,
+        Collection $promotionItems,
         ChannelInterface $channel,
         InvoiceShopBillingDataInterface $shopBillingData = null
     ): InvoiceInterface;
