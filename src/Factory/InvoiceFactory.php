@@ -11,6 +11,7 @@ use Sylius\InvoicingPlugin\Entity\Invoice;
 use Sylius\InvoicingPlugin\Entity\InvoiceInterface;
 use Sylius\InvoicingPlugin\Entity\InvoiceShopBillingData;
 use Sylius\InvoicingPlugin\Entity\InvoiceShopBillingDataInterface;
+use Sylius\InvoicingPlugin\Factory\InvoiceFactoryInterface;
 
 final class InvoiceFactory implements InvoiceFactoryInterface
 {
@@ -25,6 +26,7 @@ final class InvoiceFactory implements InvoiceFactoryInterface
         int $total,
         Collection $lineItems,
         Collection $taxItems,
+        Collection $promotionItems,
         ChannelInterface $channel,
         InvoiceShopBillingDataInterface $shopBillingData = null
     ): InvoiceInterface {
@@ -39,8 +41,10 @@ final class InvoiceFactory implements InvoiceFactoryInterface
             $total,
             $lineItems,
             $taxItems,
+            $promotionItems,
             $channel,
             $shopBillingData ?? new InvoiceShopBillingData()
         );
     }
 }
+
