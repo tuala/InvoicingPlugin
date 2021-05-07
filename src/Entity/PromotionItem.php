@@ -64,7 +64,7 @@ class PromotionItem implements PromotionItemInterface, ResourceInterface
         return $this->id;
     }
 
-    public function name(): string
+    public function name(): ?string
     {
         return $this->name;
     }
@@ -74,12 +74,12 @@ class PromotionItem implements PromotionItemInterface, ResourceInterface
         return $this->rate;
     }
 
-    public function reference(): string
+    public function reference(): ?string
     {
         return $this->reference;
     }
 
-    public function type(): string
+    public function type(): ?string
     {
         return $this->type;
     }
